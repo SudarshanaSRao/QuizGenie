@@ -7,9 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 key_path = os.environ["GCLOUD_SERVICE_ACCOUNT_KEY_PATH"]
-credentials = Credentials.from_service_account_file(
-    key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"]
-)
+credentials = Credentials.from_service_account_file(key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"])
 PROJECT_ID = os.environ["PROJECT_ID"]
 
 
@@ -74,6 +72,10 @@ class EmbeddingClient:
             print("Method embed_documents not defined for the client.")
             return None
 
+    @property
+    def get_embedding_function(self):
+        return self.client
+
 
 if __name__ == "__main__":
     model_name = "textembedding-gecko@003"
@@ -83,5 +85,7 @@ if __name__ == "__main__":
     embedding_client = EmbeddingClient(model_name, project, location)
     vectors = embedding_client.embed_query("Hello World!")
     if vectors:
+        st.write(vectors)
         print(vectors)
+        st.write("Successfully used the embedding client!")
         print("Successfully used the embedding client!")

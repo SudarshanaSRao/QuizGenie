@@ -4,7 +4,6 @@ import streamlit as st
 
 file_dir = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(file_dir)
-# sys.path.insert(1, "/path/to/tasks")  # replace with your own path if different
 from task_3.task_3 import DocumentProcessor
 from task_4.task_4 import EmbeddingClient
 
@@ -66,42 +65,25 @@ class ChromaCollectionCreator:
         # Step 2: Split documents into text chunks
         # Use a TextSplitter from Langchain to split the documents into smaller text chunks
         # https://python.langchain.com/docs/modules/data_connection/document_transformers/character_text_splitter
-        text_splitter = CharacterTextSplitter(
-            separator=".", chunk_size=1000, chunk_overlap=100
-        )
+        text_splitter = CharacterTextSplitter(separator=".", chunk_size=1000, chunk_overlap=100)
 
         # Split the processed documents into text chunks
-        text_chunks = []
+        texts = text_splitter.split_documents(self.processor.pages)
 
-        for document in self.processor.pages:
-            # Extract text content from the document
-            text = document.page_content
-            chunks = text_splitter.split_text(text)
-            text_chunks.extend(chunks)
-
-        st.write(
-            f"Split {len(self.processor.pages)} document(s) into {len(text_chunks)} text chunks"
-        )
+        if texts is not None:
+            st.success(f"Successfully split pages to {len(texts)} documents!", icon="✅")
 
         # Step 3: Create the Chroma Collection
         # https://docs.trychroma.com/
         # Create a Chroma in-memory client using the text chunks and the embeddings model
         # Initialize a Chroma collection
-        chroma_collection = Chroma()
-
-        # Iterate through each text chunk
-        for chunk in text_chunks:
-            # Get vector embedding for the text chunk
-            embedding = embed_client.embed_query(chunk)
-
-            # Add the text chunk and its embedding to the Chroma collection
-            chroma_collection.add_document(chunk, embedding)
-
-        # # Assign the Chroma collection to the class attribute
-        self.db = chroma_collection
+        self.db = Chroma.from_documents(self.processor.pages, self.embed_model)
 
         # Provide feedback to the user regarding the success of the Chroma collection creation
-        st.success("Chroma Collection created successfully!")
+        if self.db:
+            st.success("Successfully created Chroma Collection!", icon="✅")
+        else:
+            st.error("Failed to create Chroma Collection!", icon="🚨")
         # return chroma_collection
 
     def query_chroma_collection(self, query) -> Document:
