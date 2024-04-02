@@ -1,14 +1,22 @@
 # embedding_client.py
 
 from langchain_google_vertexai import VertexAIEmbeddings
-from google.oauth2.service_account import Credentials
-import os
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
-key_path = os.environ["GCLOUD_SERVICE_ACCOUNT_KEY_PATH"]
-credentials = Credentials.from_service_account_file(key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"])
-PROJECT_ID = os.environ["PROJECT_ID"]
+# file_dir = os.path.dirname(os.path.dirname(__file__))
+# sys.path.append(file_dir)
+from settings import config, creds
+
+
+# from google.oauth2.service_account import Credentials
+# import os
+
+# from dotenv import load_dotenv
+
+# load_dotenv()
+# key_path = os.environ["GCLOUD_SERVICE_ACCOUNT_KEY_PATH"]
+# credentials = Credentials.from_service_account_file(key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"])
+# PROJECT_ID = os.environ["PROJECT_ID"]
 
 
 class EmbeddingClient:
@@ -46,7 +54,7 @@ class EmbeddingClient:
             model_name=model_name,
             project=project,
             location=location,
-            credentials=credentials,
+            credentials=creds,
         )
 
     def embed_query(self, query):
@@ -72,14 +80,10 @@ class EmbeddingClient:
             print("Method embed_documents not defined for the client.")
             return None
 
-    @property
-    def get_embedding_function(self):
-        return self.client
-
 
 if __name__ == "__main__":
     model_name = "textembedding-gecko@003"
-    project = PROJECT_ID
+    project = config.PROJECT_ID
     location = "us-central1"
 
     embedding_client = EmbeddingClient(model_name, project, location)

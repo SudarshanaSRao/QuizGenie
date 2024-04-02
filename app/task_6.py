@@ -1,17 +1,18 @@
-import sys
-import os
 import streamlit as st
 
-file_dir = os.path.dirname(os.path.dirname(__file__))
-sys.path.append(file_dir)
-from task_3.task_3 import DocumentProcessor
-from task_4.task_4 import EmbeddingClient
-from task_5.task_5 import ChromaCollectionCreator
+# file_dir = os.path.dirname(os.path.dirname(__file__))
+# app_dir = os.path.dirname(file_dir)
+# sys.path.append(file_dir)
+# sys.path.append(app_dir)
+from task_3 import DocumentProcessor
+from task_4 import EmbeddingClient
+from task_5 import ChromaCollectionCreator
+from settings import config
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
-PROJECT_ID = os.environ["PROJECT_ID"]
+# load_dotenv()
+# PROJECT_ID = os.environ["PROJECT_ID"]
 
 task_description = f"""
 Task: Build a Quiz Builder with Streamlit and LangChain
@@ -52,7 +53,7 @@ if __name__ == "__main__":
     # Configuration for EmbeddingClient
     embed_config = {
         "model_name": "textembedding-gecko@003",
-        "project": PROJECT_ID,
+        "project": config.PROJECT_ID,
         "location": "us-central1",
     }
 
