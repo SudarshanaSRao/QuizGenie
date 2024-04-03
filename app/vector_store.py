@@ -1,9 +1,7 @@
+# Necessary imports
 import streamlit as st
-
-# file_dir = os.path.dirname(os.path.dirname(__file__))
-# sys.path.append(file_dir)
-from task_3 import DocumentProcessor
-from task_4 import EmbeddingClient
+from pdf_processing import DocumentProcessor
+from embedding_client import EmbeddingClient
 from settings import config
 
 
@@ -11,12 +9,8 @@ from settings import config
 from langchain_core.documents import Document
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain.embeddings.openai import OpenAIEmbeddings
 
-# from dotenv import load_dotenv
-
-# load_dotenv()
-# PROJECT_ID = os.environ["PROJECT_ID"]
+# from langchain.embeddings.openai import OpenAIEmbeddings
 
 
 class ChromaCollectionCreator:
@@ -32,38 +26,15 @@ class ChromaCollectionCreator:
 
     def create_chroma_collection(self):
         """
-        Task: Create a Chroma collection from the documents processed by the DocumentProcessor instance.
-
-        Steps:
-        1. Check if any documents have been processed by the DocumentProcessor instance. If not, display an error message using streamlit's error widget.
-
-        2. Split the processed documents into text chunks suitable for embedding and indexing. Use the CharacterTextSplitter from Langchain to achieve this. You'll need to define a separator, chunk size, and chunk overlap.
-        https://python.langchain.com/docs/modules/data_connection/document_transformers/
-
-        3. Create a Chroma collection in memory with the text chunks obtained from step 2 and the embeddings model initialized in the class. Use the Chroma.from_documents method for this purpose.
-        https://python.langchain.com/docs/integrations/vectorstores/chroma#use-openai-embeddings
-        https://docs.trychroma.com/getting-started
-
-        Instructions:
-        - Begin by verifying that there are processed pages available. If not, inform the user that no documents are found.
-
-        - If documents are available, proceed to split these documents into smaller text chunks. This operation prepares the documents for embedding and indexing. Look into using the CharacterTextSplitter with appropriate parameters (e.g., separator, chunk_size, chunk_overlap).
-
-        - Next, with the prepared texts, create a new Chroma collection. This step involves using the embeddings model (self.embed_model) along with the texts to initialize the collection.
-
-        - Finally, provide feedback to the user regarding the success or failure of the Chroma collection creation.
-
-        Note: Ensure to replace placeholders like [Your code here] with actual implementation code as per the instructions above.
+        Creates a Chroma collection from the documents processed by the DocumentProcessor instance.
         """
 
-        # Step 1: Check for processed documents
+        # Check for processed documents
         if len(self.processor.pages) == 0:
             st.error("No documents found!", icon="🚨")
             return
 
-        # Step 2: Split documents into text chunks
-        # Use a TextSplitter from Langchain to split the documents into smaller text chunks
-        # https://python.langchain.com/docs/modules/data_connection/document_transformers/character_text_splitter
+        # Split documents into text chunks
         text_splitter = CharacterTextSplitter(separator=".", chunk_size=1000, chunk_overlap=100)
 
         # Split the processed documents into text chunks
@@ -72,10 +43,7 @@ class ChromaCollectionCreator:
         if texts is not None:
             st.success(f"Successfully split pages to {len(texts)} documents!", icon="✅")
 
-        # Step 3: Create the Chroma Collection
-        # https://docs.trychroma.com/
-        # Create a Chroma in-memory client using the text chunks and the embeddings model
-        # Initialize a Chroma collection
+        # Create the Chroma Collection
         self.db = Chroma.from_documents(self.processor.pages, self.embed_model)
 
         # Provide feedback to the user regarding the success of the Chroma collection creation
@@ -83,7 +51,6 @@ class ChromaCollectionCreator:
             st.success("Successfully created Chroma Collection!", icon="✅")
         else:
             st.error("Failed to create Chroma Collection!", icon="🚨")
-        # return chroma_collection
 
     def query_chroma_collection(self, query) -> Document:
         """
@@ -103,7 +70,7 @@ class ChromaCollectionCreator:
 
 
 if __name__ == "__main__":
-    processor = DocumentProcessor()  # Initialize from Task 3
+    processor = DocumentProcessor()
     processor.ingest_documents()
 
     embed_config = {
@@ -112,7 +79,7 @@ if __name__ == "__main__":
         "location": "us-central1",
     }
 
-    embed_client = EmbeddingClient(**embed_config)  # Initialize from Task 4
+    embed_client = EmbeddingClient(**embed_config)
 
     chroma_creator = ChromaCollectionCreator(processor, embed_client)
 
