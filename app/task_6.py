@@ -1,4 +1,5 @@
 import streamlit as st
+from settings import config
 
 # file_dir = os.path.dirname(os.path.dirname(__file__))
 # app_dir = os.path.dirname(file_dir)
@@ -7,7 +8,6 @@ import streamlit as st
 from task_3 import DocumentProcessor
 from task_4 import EmbeddingClient
 from task_5 import ChromaCollectionCreator
-from settings import config
 
 # from dotenv import load_dotenv
 
