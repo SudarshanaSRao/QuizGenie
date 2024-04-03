@@ -1,16 +1,8 @@
-# Necessary imports
-from settings import config
 import streamlit as st
+from embedding_client import EmbeddingClient
+from pdf_processing import DocumentProcessor
 from settings import config
-
-# file_dir = os.path.dirname(os.path.dirname(__file__))
-# app_dir = os.path.dirname(file_dir)
-# sys.path.append(file_dir)
-# sys.path.append(app_dir)
-from task_3 import DocumentProcessor
-from task_4 import EmbeddingClient
-from task_5 import ChromaCollectionCreator
-
+from vector_store import ChromaCollectionCreator
 
 if __name__ == "__main__":
     st.header("Quizzify")

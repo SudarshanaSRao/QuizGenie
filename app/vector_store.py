@@ -1,16 +1,10 @@
-# Necessary imports
 import streamlit as st
-from pdf_processing import DocumentProcessor
 from embedding_client import EmbeddingClient
-from settings import config
-
-
-# Import Task libraries
-from langchain_core.documents import Document
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-
-# from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_core.documents import Document
+from pdf_processing import DocumentProcessor
+from settings import config
 
 
 class ChromaCollectionCreator:

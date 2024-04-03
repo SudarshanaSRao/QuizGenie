@@ -1,17 +1,9 @@
-from functools import lru_cache
 import os
+from functools import lru_cache
 
-# from dotenv import load_dotenv
 from google.oauth2.service_account import Credentials
-
-from langchain_google_vertexai import VertexAIEmbeddings
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-# load_dotenv()
-# key_path = os.environ["GCLOUD_SERVICE_ACCOUNT_KEY_PATH"]
-# credentials = Credentials.from_service_account_file(key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"])
-# # PROJECT_ID = os.environ["PROJECT_ID"]
 
 
 class Path:
@@ -45,15 +37,3 @@ def get_credentials():
 
 
 creds = get_credentials()
-
-# print(config.model_dump(), creds)
-# print(os.path.join(Path.secrets_dir, config.GCLOUD_SERVICE_ACCOUNT_KEY_PATH))
-
-
-# v = VertexAIEmbeddings(
-#     model_name="textembedding-gecko@003",
-#     project=config.PROJECT_ID,
-#     location="us-central1",
-#     credentials=creds,
-# )
-# print(v.embed_query("Hello World"))

@@ -1,6 +1,5 @@
-# Necessary imports
-from langchain_google_vertexai import VertexAIEmbeddings
 import streamlit as st
+from langchain_google_vertexai import VertexAIEmbeddings
 from settings import config, creds
 
 
