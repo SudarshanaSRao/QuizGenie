@@ -20,21 +20,17 @@ class Settings(BaseSettings):
     PROJECT_ID: str = Field()
     PROJECT_LOCATION: str = Field()
 
+    CREDENTIALS: Credentials | None = Field(default=None)
+
 
 @lru_cache
 def get_settings() -> Settings:
     settings = Settings()
+    settings.CREDENTIALS = Credentials.from_service_account_file(
+        os.path.join(Path.secrets_dir, settings.GCLOUD_SERVICE_ACCOUNT_KEY_PATH),
+        scopes=["https://www.googleapis.com/auth/cloud-platform"],
+    )
     return settings
 
 
 config = get_settings()
-
-
-def get_credentials():
-    return Credentials.from_service_account_file(
-        os.path.join(Path.secrets_dir, config.GCLOUD_SERVICE_ACCOUNT_KEY_PATH),
-        scopes=["https://www.googleapis.com/auth/cloud-platform"],
-    )
-
-
-creds = get_credentials()

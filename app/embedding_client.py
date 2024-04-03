@@ -1,6 +1,6 @@
 import streamlit as st
 from langchain_google_vertexai import VertexAIEmbeddings
-from settings import config, creds
+from settings import config
 
 
 class EmbeddingClient:
@@ -18,7 +18,7 @@ class EmbeddingClient:
             model_name=model_name,
             project=project,
             location=location,
-            credentials=creds,
+            credentials=config.CREDENTIALS,
         )
 
     def embed_query(self, query):
