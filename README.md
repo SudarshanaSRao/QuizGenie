@@ -1,1 +1,1 @@
-# Gemini-Quizify
+# Gemini-Quizzify

@@ -11,7 +11,7 @@ if __name__ == "__main__":
     embed_config = {
         "model_name": "textembedding-gecko@003",
         "project": config.PROJECT_ID,
-        "location": "us-central1",
+        "location": config.PROJECT_LOCATION,
     }
 
     screen = st.empty()  # Screen 1, ingest documents

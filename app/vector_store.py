@@ -1,7 +1,7 @@
 import streamlit as st
 from embedding_client import EmbeddingClient
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores.chroma import Chroma
 from langchain_core.documents import Document
 from pdf_processing import DocumentProcessor
 from settings import config
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     embed_config = {
         "model_name": "textembedding-gecko@003",
         "project": config.PROJECT_ID,
-        "location": "us-central1",
+        "location": config.PROJECT_LOCATION,
     }
 
     embed_client = EmbeddingClient(**embed_config)

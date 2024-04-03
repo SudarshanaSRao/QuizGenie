@@ -18,6 +18,7 @@ class Settings(BaseSettings):
 
     GCLOUD_SERVICE_ACCOUNT_KEY_PATH: str = Field()
     PROJECT_ID: str = Field()
+    PROJECT_LOCATION: str = Field()
 
 
 @lru_cache

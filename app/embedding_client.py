@@ -48,7 +48,7 @@ class EmbeddingClient:
 if __name__ == "__main__":
     model_name = "textembedding-gecko@003"
     project = config.PROJECT_ID
-    location = "us-central1"
+    location = config.PROJECT_LOCATION
 
     embedding_client = EmbeddingClient(model_name, project, location)
     vectors = embedding_client.embed_query("Hello World!")
