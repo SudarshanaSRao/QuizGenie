@@ -46,6 +46,10 @@ class ChromaCollectionCreator:
         else:
             st.error("Failed to create Chroma Collection!", icon="🚨")
 
+    def as_retriever(self):
+        # Wrapper method to return the self.db when the call is made by the retriever
+        return self.db.as_retriever()
+
     def query_chroma_collection(self, query) -> Document:
         """
         Queries the created Chroma collection for documents similar to the query.
