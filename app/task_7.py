@@ -17,8 +17,10 @@ class QuizGenerator:
         and an optional vectorstore for querying related information.
 
         :param topic: A string representing the required topic of the quiz.
-        :param num_questions: An integer representing the number of questions to generate for the quiz, up to a maximum of 20.
-        :param vectorstore: An optional vectorstore instance (e.g., ChromaDB) to be used for querying information related to the quiz topic.
+        :param num_questions: An integer representing the number of questions to generate for the quiz, up to a maximum
+        of 20.
+        :param vectorstore: An optional vectorstore instance (e.g., ChromaDB) to be used for querying information
+        related to the quiz topic.
         """
         if not topic:
             self.topic = "General Knowledge"
@@ -33,7 +35,6 @@ class QuizGenerator:
         self.llm = None
         self.system_template = """
             You are a subject matter expert on the topic: {topic}
-            
             Follow the instructions to create a quiz question:
             1. Generate a question based on the topic provided and context as key "question"
             2. Provide 4 multiple choice answers to the question as a list of key-value pairs "choices"
