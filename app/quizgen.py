@@ -17,8 +17,10 @@ class QuizGenerator:
         and an optional vectorstore for querying related information.
 
         :param topic: A string representing the required topic of the quiz.
-        :param num_questions: An integer representing the number of questions to generate for the quiz, up to a maximum of 10.
-        :param vectorstore: An optional vectorstore instance (e.g., ChromaDB) to be used for querying information related to the quiz topic.
+        :param num_questions: An integer representing the number of questions to generate for the quiz, up to a maximum
+        of 10.
+        :param vectorstore: An optional vectorstore instance (e.g., ChromaDB) to be used for querying information
+        related to the quiz topic.
         """
         if not topic:
             self.topic = "General Knowledge"
@@ -103,12 +105,15 @@ class QuizGenerator:
 
     def generate_quiz(self) -> list:
         """
-        This method orchestrates the quiz generation process by utilizing the `generate_question_with_vectorstore` method to generate each question and the `validate_question` method to ensure its uniqueness before adding it to the quiz.
+        This method orchestrates the quiz generation process by utilizing the `generate_question_with_vectorstore`
+        method to generate each question and the `validate_question` method to ensure its uniqueness before adding it
+        to the quiz.
 
         Returns:
         - A list of dictionaries, where each dictionary represents a unique quiz question generated based on the topic.
 
-        Note: This method relies on `generate_question_with_vectorstore` for question generation and `validate_question` for ensuring question uniqueness. Ensure `question_bank` is properly initialized and managed.
+        Note: This method relies on `generate_question_with_vectorstore` for question generation and `validate_question`
+        for ensuring question uniqueness. Ensure `question_bank` is properly initialized and managed.
         """
         self.question_bank = []  # Reset the question bank
         retry_limit = 3  # Maximum number of retries to generate a unique question
@@ -151,10 +156,13 @@ class QuizGenerator:
 
     def validate_question(self, question: dict) -> bool:
         """
-        This method checks if the provided question (as a dictionary) is unique based on its text content compared to previously generated questions stored in `question_bank`. The goal is to ensure that no duplicate questions are added to the quiz.
+        This method checks if the provided question (as a dictionary) is unique based on its text content compared to
+        previously generated questions stored in `question_bank`. The goal is to ensure that no duplicate questions
+        are added to the quiz.
 
         Parameters:
-        - question: A dictionary representing the generated quiz question, expected to contain at least a "question" key.
+        - question: A dictionary representing the generated quiz question, expected to contain at least a "question"
+        key.
 
         Returns:
         - A boolean value: True if the question is unique, False otherwise.
