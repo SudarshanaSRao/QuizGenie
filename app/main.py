@@ -53,14 +53,16 @@ if __name__ == "__main__":
                         st.session_state["question_bank"] = question_bank
                         st.session_state["display_quiz"] = True
                         st.session_state["question_index"] = 0
+                        st.session_state["score"] = 0
+                        st.session_state["last_question"] = False
 
                     st.form_submit_button("Start quiz")
 
     elif st.session_state["display_quiz"]:
 
-        screen = st.empty()
-        with screen.container():
-            st.header("Generated Quiz Question: ")
+        st.empty()
+        with st.container():
+            st.header("Question: " + str(st.session_state["question_index"] + 1))
             quiz_manager = QuizManager(st.session_state["question_bank"])
 
             # Format the question and display it
@@ -85,6 +87,7 @@ if __name__ == "__main__":
                     correct_answer_key = index_question["answer"]
                     if answer.startswith(correct_answer_key):
                         st.success("Correct!")
+                        st.session_state["score"] += 1
                     else:
                         st.error("Incorrect!")
                     st.write(f"Explanation: {index_question['explanation']}")
@@ -94,11 +97,25 @@ if __name__ == "__main__":
                         "Next Question", on_click=lambda: quiz_manager.next_question_index(direction=1)
                     )
                 else:
+                    # st.session_state["last_question"] = True
                     st.form_submit_button(
-                        "End Quiz",
-                        on_click=lambda: st.session_state.update({"display_quiz": False, "question_bank": []}),
+                        "Finish Quiz",
+                        on_click=lambda: st.session_state.update({"display_quiz": False, "last_question": True}),
                     )
-                    restart = st.form_submit_button(
-                        "Restart Quiz",
-                        on_click=lambda: st.session_state.update({"display_quiz": True, "question_index": 0}),
-                    )
+
+    elif st.session_state["last_question"]:
+        st.empty()
+        with st.container():
+            st.header("End of Quiz")
+            with st.form("End"):
+                st.subheader(
+                    f"You answered {st.session_state['score']} out of {len(st.session_state['question_bank'])} correct answered correctly."
+                )
+                st.form_submit_button(
+                    "End Quiz",
+                    on_click=lambda: st.session_state.update({"display_quiz": False, "question_bank": []}),
+                )
+                restart = st.form_submit_button(
+                    "Restart Quiz",
+                    on_click=lambda: st.session_state.update({"display_quiz": True, "question_index": 0, "score": 0}),
+                )
