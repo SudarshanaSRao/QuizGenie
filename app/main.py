@@ -9,7 +9,6 @@ from quiz import QuizGenerator, QuizManager
 # from task_9 import QuizManager
 
 if __name__ == "__main__":
-
     embed_config = {
         "model_name": "textembedding-gecko@003",
         "project": config.PROJECT_ID,
@@ -56,7 +55,7 @@ if __name__ == "__main__":
                         st.session_state["score"] = 0
                         st.session_state["last_question"] = False
 
-                    st.form_submit_button("Start quiz")
+                    st.form_submit_button("Start Quiz")
 
     elif st.session_state["display_quiz"]:
 
@@ -90,14 +89,29 @@ if __name__ == "__main__":
                         st.session_state["score"] += 1
                     else:
                         st.error("Incorrect!")
-                    st.write(f"Explanation: {index_question['explanation']}")
+                        st.info(f"Explanation: {index_question['explanation']}")
 
-                if st.session_state["question_index"] < len(st.session_state["question_bank"]) - 1:
+                if st.session_state["question_index"] == 0:
                     st.form_submit_button(
                         "Next Question", on_click=lambda: quiz_manager.next_question_index(direction=1)
                     )
+
+                elif st.session_state["question_index"] < len(st.session_state["question_bank"]) - 1:
+                    col1, col2, col3, col4 = st.columns(4)
+
+                    with col1:
+                        st.form_submit_button(
+                            "Previuos Question", on_click=lambda: quiz_manager.next_question_index(direction=-1)
+                        )
+                    with col4:
+                        st.form_submit_button(
+                            "Next Question", on_click=lambda: quiz_manager.next_question_index(direction=1)
+                        )
+
                 else:
-                    # st.session_state["last_question"] = True
+                    st.form_submit_button(
+                        "Previuos Question", on_click=lambda: quiz_manager.next_question_index(direction=-1)
+                    )
                     st.form_submit_button(
                         "Finish Quiz",
                         on_click=lambda: st.session_state.update({"display_quiz": False, "last_question": True}),

@@ -220,7 +220,7 @@ class QuizManager:
         Note: Ensure that `st.session_state["question_index"]` is initialized before calling this method. This navigation method enhances the user experience by providing fluid access to quiz questions.
         """
         current_index = st.session_state["question_index"]
-        new_index = current_index + direction % (self.total_questions)
+        new_index = (current_index + direction) % (self.total_questions)
         st.session_state["question_index"] = new_index
 
 
