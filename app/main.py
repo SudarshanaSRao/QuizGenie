@@ -1,12 +1,9 @@
 import streamlit as st
-from settings import config
-
-from pdf_processing import DocumentProcessor
 from embedding_client import EmbeddingClient
-from vector_store import ChromaCollectionCreator
+from pdf_processing import DocumentProcessor
 from quiz import QuizGenerator, QuizManager
-
-# from task_9 import QuizManager
+from settings import config
+from vector_store import ChromaCollectionCreator
 
 if __name__ == "__main__":
     embed_config = {
@@ -123,7 +120,8 @@ if __name__ == "__main__":
             st.header("End of Quiz")
             with st.form("End"):
                 st.subheader(
-                    f"You answered {st.session_state['score']} out of {len(st.session_state['question_bank'])} correct answered correctly."
+                    f"You answered {st.session_state['score']} out of {len(st.session_state['question_bank'])} correct"
+                    "answered correctly."
                 )
                 st.form_submit_button(
                     "End Quiz",
