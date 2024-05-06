@@ -49,7 +49,7 @@ The project files encompass the following tasks:
 
 **Generated Questions**
 
-![Screen State Handling](https://github.com/Rohit04121998/Gemini-Quizify/tree/main/assets/generated_question.png)
+![Screen State Handling](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/generated_question.png)
 
 ## Issues Faced
 
