@@ -44,7 +44,7 @@ The project files encompass the following tasks:
 
 **PDF Input**
 
-![Generate Quiz Algorithm Input](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/implementation.png)
+![Generate Quiz Algorithm Input](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/pdf_input.png)
 
 
 **Generated Questions**
