@@ -38,13 +38,13 @@ The project files encompass the following tasks:
 
 ## Implementation Flow
 
-![Task 9 Overview](https://github.com/Rohit04121998/Gemini-Quizify/tree/main/assets/implementation.png)
+![Task 9 Overview](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/implementation.png)
 
 ### Work Flow
 
 **PDF Input**
 
-![Generate Quiz Algorithm Input](https://github.com/Rohit04121998/Gemini-Quizify/tree/main/assets/implementation.png)
+![Generate Quiz Algorithm Input](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/implementation.png)
 
 
 **Generated Questions**
