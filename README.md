@@ -42,12 +42,12 @@ The project files encompass the following tasks:
 
 ### Work Flow
 
-**PDF Input**
+**1. PDF Input**
 
 ![Generate Quiz Algorithm Input](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/pdf_input.png)
 
 
-**Generated Questions**
+**2. Generated Questions**
 
 ![Screen State Handling](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/generated_question.png)
 
