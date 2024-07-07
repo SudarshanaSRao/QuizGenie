@@ -2,7 +2,7 @@
 An AI-powered and RAG-based quiz tool offers an accessible and effective way to strengthen their grasp of various subjects.
 
 ## Objective:
-The lack of accessible and effective means for students and learners to reinforce their understanding of various topics. Recognizing the challenge of obtaining timely feedback and engaging in unlimited practice, the team is developing an AI-generated assessment and quiz tool. This tool aims to provide users with instant feedback and comprehensive explanations, thus facilitating deeper comprehension and retention of knowledge. By dynamically generating quizzes based on user-provided documents, ranging from textbooks to scholarly papers, the tool offers a tailored learning experience. The end result will be a user-friendly platform that empowers individuals to hone their skills, solidify their understanding, and ultimately excel in their academic pursuits.
+This AI-powered assessment and quiz tool is your brainchild! It tackles the challenge of finding effective study resources by dynamically generating quizzes from your chosen materials, like textbooks and scholarly articles. Users receive immediate feedback and comprehensive explanations, fostering a deeper understanding and knowledge retention. This innovative tool personalizes the learning experience by tailoring quizzes to specific documents, making it a valuable asset for anyone seeking to solidify their knowledge and excel in their studies.
 
 ## Logic
 ![Task 9 Overview](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/implementation.png)
