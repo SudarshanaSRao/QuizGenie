@@ -8,11 +8,7 @@ The lack of accessible and effective means for students and learners to reinforc
 ![Task 9 Overview](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/implementation.png)
 
 ## GUI
-**1. PDF Input**
-
 ![Generate Quiz Algorithm Input](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/pdf_input.png)
-
-**2. Generated Questions**
 
 ![Screen State Handling](https://github.com/Rohit04121998/Gemini-Quizify/blob/main/assets/generated_question.png)
 
