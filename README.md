@@ -1,6 +1,8 @@
 # QuizGenie
 An AI-powered and RAG-based quiz tool offers an accessible and effective way to strengthen their grasp of various subjects.
 
+### [Medium blog](https://medium.com/@sudarshanasrao/quizgenie-e3f375287f7e)
+
 ## Objective:
 This AI-powered assessment and quiz tool is your brainchild! It tackles the challenge of finding effective study resources by dynamically generating quizzes from your chosen materials, like textbooks and scholarly articles. Users receive immediate feedback and comprehensive explanations, fostering a deeper understanding and knowledge retention. This innovative tool personalizes the learning experience by tailoring quizzes to specific documents, making it a valuable asset for anyone seeking to solidify their knowledge and excel in their studies.
 
